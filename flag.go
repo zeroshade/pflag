@@ -410,6 +410,10 @@ var Usage = func() {
 	PrintDefaults()
 }
 
+func SetUsageFunc(usage func()) {
+	Usage = usage
+}
+
 // NFlag returns the number of flags that have been set.
 func (f *FlagSet) NFlag() int { return len(f.actual) }
 
@@ -878,6 +882,10 @@ func (f *FlagSet) VarP(value Value, name, shorthand, usage string) {
 // decompose the comma-separated string into the slice.
 func Var(value Value, name string, usage string) {
 	commandLine.VarP(value, name, "", usage)
+}
+
+func VarP(value Value, name string, shorthand string, usage string) {
+	commandLine.VarP(value, name, shorthand, usage)
 }
 
 // failf prints to standard error a formatted error and usage message and
